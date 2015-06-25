@@ -2,12 +2,17 @@
 
 require_relative 'formatter'
 format = Formatter.new
+if ARGV.length != 1
+	puts "usage: main.rb [format]"
+	puts "possible formats: asterisk, html"
+	exit
+end
 while true do
 	begin
-		format.string = gets
-		puts format.render("html",format.split)
-		#puts format.render("asterisk",format.split)
+		format.string = STDIN.gets.chomp
+		puts format.render(ARGV[0],format.split)
 	rescue Exception => e
+		puts e
 		break
 	end
 end
