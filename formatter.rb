@@ -15,6 +15,7 @@ class Formatter
 	end
 end
 class Controller
+	attr_reader :array
 	def initialize(array=nil) #initialize values
 		@array = array
 		@maxLength = array.max_by{|x|x.length}.length

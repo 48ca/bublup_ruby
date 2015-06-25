@@ -21,3 +21,12 @@ describe Formatter do
 		expect(@formatter.render("asterisk",@formatter.split)).to eq("\n***********\n\n* default *\n\n* String  *\n\n***********\n")
 	end
 end
+describe Controller do
+	before :each do
+		@ctrl = Controller.new(['default','String'])
+	end
+	it "should ast-ify the string" do
+		@ctrl.ast
+		expect(@ctrl.array).to eq(['* default *','* String  *'])
+	end
+end
