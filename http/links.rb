@@ -11,7 +11,7 @@ class Links
 		la = @content.split("<a ")
 		links = []
 		for i in 1..la.length-1 do
-			tmp = la[i].split("href=")[1]
+			tmp = la[i].split("href")[1]
 			links[i-1] = tmp.split("\"")[1] if tmp.class != NilClass
 		end
 		links
