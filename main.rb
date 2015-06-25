@@ -1,5 +1,13 @@
+#!/usr/bin/env ruby
+
 require_relative 'formatter'
 format = Formatter.new
-format.string = "Hello, my name is James."
-puts format.render("html",format.split)
-puts format.render("asterisk",format.split)
+while true do
+	begin
+		format.string = gets
+		puts format.render("html",format.split)
+		#puts format.render("asterisk",format.split)
+	rescue Exception => e
+		break
+	end
+end
