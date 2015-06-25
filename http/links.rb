@@ -10,9 +10,9 @@ class Links
 		downloadPage()
 		la = @content.split("<a ")
 		links = []
-		return links if la.length == 0
 		for i in 1..la.length-1 do
-			links[i-1] = la[i].split("href")[1].split("\"")[1]
+			tmp = la[i].split("href")[1]
+			links[i-1] = tmp.split("\"")[1] if tmp.class != NilClass
 		end
 		links
 	end
