@@ -12,7 +12,6 @@ while true do
 		format.string = STDIN.gets.chomp
 		puts format.render(ARGV[0],format.split)
 	rescue Exception => e
-		puts e
 		break
 	end
 end
