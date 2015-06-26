@@ -10,5 +10,5 @@ if ARGV.length==1
 		puts "(Is http:// in front of the URL?)"
 	end
 else
-	puts "usage: ruby main.rb [URI]"
+	STDERR.puts "usage: ruby main.rb [URI]"
 end
