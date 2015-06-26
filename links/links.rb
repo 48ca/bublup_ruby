@@ -2,21 +2,31 @@
 require 'httparty'
 
 class Links
+	attr_accessor :links
 	def initialize(str)
-		@link = str
+		@URL = str
 		@content = ""
+		@links = []
+		downloadPage()
+	end
+	def genLinks()
+		getATags()
+		getLinks()
+		@links
+	end
+	def getATags()
+		@links = @content.split("<a ")
+		@links.shift
 	end
 	def getLinks() #find all links in body of page
-		downloadPage()
-		la = @content.split("<a ")
-		links = []
-		for i in 1..la.length-1 do
-			tmp = la[i].split("href")[1]
-			links[i-1] = tmp.split("\"")[1] if tmp.class != NilClass
+		tmplinks = []
+		@links.each do |element|
+			tmp = element.split("href")[1]
+			tmplinks << tmp.split("\"")[1] if tmp.class != NilClass
 		end
-		links
+		@links = tmplinks
 	end
 	def downloadPage()
-		@content = HTTParty.get(@link).to_s
+		@content = HTTParty.get(@URL).to_s
 	end
 end
