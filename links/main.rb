@@ -12,8 +12,3 @@ if ARGV.length==1
 else
 	puts "usage: ruby main.rb [URI]"
 end
-#	while true
-#		url = gets
-#		body = HTTParty.get(url.to_s).to_s
-#		puts getLinks(body)
-#	end
