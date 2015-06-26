@@ -3,7 +3,8 @@
 require_relative 'formatter'
 format = Formatter.new
 if ARGV.length != 1
-	puts "usage: main.rb [format]"
+	puts "usage: main.rb [format]" 	# A good way to run this with I/O files is
+									# ruby main.rb < [input file] > [output file]
 	puts "possible formats: asterisk, html"
 	exit
 end
