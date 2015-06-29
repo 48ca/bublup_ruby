@@ -2,21 +2,30 @@
 require 'httparty'
 
 class Links
+	attr_accessor :links
 	def initialize(str)
-		@link = str
-		@content = ""
+		@URL = str
+		@content = download()
+		@links = []
+	end
+	def genLinks() #call two methods to parse links
+		getATags() #get all a tags first
+		getLinks() #with a tags, get all href attrs
+		@links #optional return
+	end
+	def getATags()
+		@links = @content.split("<a ") #split content on a tags
+		@links.shift #remove garbage data in front
 	end
 	def getLinks() #find all links in body of page
-		downloadPage()
-		la = @content.split("<a ")
-		links = []
-		for i in 1..la.length-1 do
-			tmp = la[i].split("href")[1]
-			links[i-1] = tmp.split("\"")[1] if tmp.class != NilClass
+		tmplinks = []
+		@links.each do |element| #for all a tags
+			tmp = element.split("href")[1] #find href attribute
+			tmplinks << tmp.split("\"")[1] if tmp.class != NilClass #and if no error occurs, add what's between the immediate quotes
 		end
-		links
+		@links = tmplinks #set links to the tmp array
 	end
-	def downloadPage()
-		@content = HTTParty.get(@link).to_s
+	def download()
+		HTTParty.get(@URL).to_s #get URL. to_s gives page without headers
 	end
 end
