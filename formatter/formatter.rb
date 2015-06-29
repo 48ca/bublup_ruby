@@ -10,7 +10,7 @@ class Formatter
 	end
 	def render(format,array)
 		ctrl = Controller.new(array) #pass control to Controller
-		template = ERB.new File.new("partials/"+format+".erb").read,nil,"%" #initialize template
+		template = ERB.new File.new("partials/#{format}.erb").read,nil,"%" #initialize template
 		template.result(ctrl.getBinding) #render and return template
 	end
 end
@@ -25,8 +25,8 @@ class Controller
 	end
 	def ast #be able to format strings for asterisk format (called in partials/asterisk.erb)
 		@array.length.times do |element|
-			@array[element] = @array[element].ljust(@maxLength+1," ")+"*"
-			@array[element] = "*"+@array[element].rjust(@maxLength+3," ")
+			@array[element] = "#{@array[element].ljust(@maxLength+1," ")}*"
+			@array[element] = "*#{@array[element].rjust(@maxLength+3," ")}"
 		end
 	end
 end
