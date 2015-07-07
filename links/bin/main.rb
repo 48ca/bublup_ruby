@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative 'links'
+require_relative '../lib/links'
 
 if ARGV.length==1
 	begin

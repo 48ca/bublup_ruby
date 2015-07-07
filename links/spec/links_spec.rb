@@ -1,4 +1,4 @@
-require_relative 'links'
+require 'links'
 
 describe Links do
 	it "should return 10 links from tjhsst.edu" do
